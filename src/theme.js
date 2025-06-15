@@ -1,40 +1,50 @@
 import { createTheme } from "@mui/material/styles";
 
-export const getTheme = (mode) =>
-  createTheme({
+export const getTheme = (mode = "light") => {
+  const resolvedMode = mode === "dark" ? "dark" : "light"; // fallback if 'auto' or unknown
+
+  return createTheme({
     palette: {
-      mode,
-      ...(mode === "light"
-        ? {
-            background: {
-              default: "#f2f4f8",
-              paper: "#ffffffcc"
-            },
-            primary: {
-              main: "#4a90e2"
-            }
-          }
-        : {
-            background: {
-              default: "#121212",
-              paper: "#1f1f1fcc"
-            },
-            primary: {
-              main: "#90caf9"
-            }
-          }),
+      mode: resolvedMode,
+      primary: {
+        main: resolvedMode === "dark" ? "#90caf9" : "#1976d2",
+      },
+      secondary: {
+        main: resolvedMode === "dark" ? "#f48fb1" : "#9c27b0",
+      },
+      background: {
+        default: resolvedMode === "dark" ? "#121212" : "#f5f5f5",
+        paper: resolvedMode === "dark" ? "#1e1e1e" : "#ffffff",
+      },
+      text: {
+        primary: resolvedMode === "dark" ? "#ffffff" : "#000000",
+        secondary: resolvedMode === "dark" ? "#cccccc" : "#444444",
+      },
     },
     typography: {
-      fontFamily: `"Inter", "Roboto", "Arial", sans-serif`,
+      fontFamily: "'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif",
+      button: {
+        textTransform: "none",
+        fontWeight: 600,
+      },
     },
     components: {
       MuiPaper: {
         styleOverrides: {
           root: {
-            backdropFilter: "blur(10px)",
-            borderRadius: "20px",
-          }
-        }
-      }
-    }
+            borderRadius: "16px",
+            transition: "all 0.3s ease",
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: "999px",
+            textTransform: "uppercase",
+          },
+        },
+      },
+    },
   });
+};
