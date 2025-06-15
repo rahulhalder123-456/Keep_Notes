@@ -1,59 +1,61 @@
 import React, { useState } from "react";
+import { TextField, Fab, Paper, Zoom, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import Fab from "@mui/material/Fab";
-import Zoom from "@mui/material/Zoom";
 
-function CreateArea(props) {
+function CreateArea({ onAdd }) {
   const [isExpanded, setExpanded] = useState(false);
-  const [note, setNote] = useState({
-    title: "",
-    content: ""
-  });
+  const [note, setNote] = useState({ title: "", content: "" });
 
-  function handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setNote(prevNote => ({
-      ...prevNote,
-      [name]: value
-    }));
-  }
+    setNote((prev) => ({ ...prev, [name]: value }));
+  };
 
-  function submitNote(event) {
-    props.onAdd(note);
-    setNote({ title: "", content: "" });
+  const submitNote = (event) => {
     event.preventDefault();
-  }
-
-  function expand() {
-    setExpanded(true);
-  }
+    if (note.title || note.content) {
+      onAdd(note);
+      setNote({ title: "", content: "" });
+    }
+  };
 
   return (
-    <div>
-      <form className="create-note">
-        {isExpanded && (
-          <input
-            name="title"
+    <Box display="flex" justifyContent="center">
+      <Paper elevation={4} sx={{ p: 3, width: "100%", maxWidth: 700, backdropFilter: "blur(6px)" }}>
+        <form>
+          {isExpanded && (
+            <TextField
+              name="title"
+              label="Title"
+              fullWidth
+              margin="dense"
+              variant="outlined"
+              value={note.title}
+              onChange={handleChange}
+            />
+          )}
+          <TextField
+            name="content"
+            label="Take a note..."
+            fullWidth
+            multiline
+            rows={isExpanded ? 3 : 1}
+            margin="dense"
+            variant="outlined"
+            value={note.content}
+            onClick={() => setExpanded(true)}
             onChange={handleChange}
-            value={note.title}
-            placeholder="Title"
           />
-        )}
-        <textarea
-          name="content"
-          onClick={expand}
-          onChange={handleChange}
-          value={note.content}
-          placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
-        />
-        <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
-            <AddIcon />
-          </Fab>
-        </Zoom>
-      </form>
-    </div>
+          <Zoom in={isExpanded}>
+            <Box textAlign="right" mt={1}>
+              <Fab color="primary" size="medium" onClick={submitNote}>
+                <AddIcon />
+              </Fab>
+            </Box>
+          </Zoom>
+        </form>
+      </Paper>
+    </Box>
   );
 }
 
