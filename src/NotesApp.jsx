@@ -68,9 +68,9 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
   const addNote = (newNote) => {
     const colorOptions = mode === "dark" ? darkColors : colors;
     const randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-    setNotes((prev) => [...prev, { 
-      ...newNote, 
-      isPinned: false, 
+    setNotes((prev) => [...prev, {
+      ...newNote,
+      isPinned: false,
       id: uuidv4(),
       color: randomColor,
       createdAt: new Date().toISOString()
@@ -117,10 +117,10 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box 
-        sx={{ 
-          minHeight: "100vh", 
-          background: mode === "dark" 
+      <Box
+        sx={{
+          minHeight: "100vh",
+          background: mode === "dark"
             ? `
               radial-gradient(ellipse at top, #1a1a2e 0%, #16213e 50%, #0f0f23 100%),
               linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.05) 100%)
@@ -158,21 +158,21 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
       >
         <Header />
         <ThemeToggle mode={mode} setMode={setMode} />
-        
+
         <Container maxWidth="lg" sx={{ pt: 5, position: "relative", zIndex: 1 }}>
           {/* Stats Section */}
-          <Box 
-            display="flex" 
-            gap={2} 
-            mb={4} 
+          <Box
+            display="flex"
+            gap={2}
+            mb={4}
             flexWrap="wrap"
             justifyContent="center"
           >
-            <Chip 
+            <Chip
               label={`📝 ${notes.length} Total Notes`}
               sx={{
-                background: mode === "dark" 
-                  ? "rgba(102, 126, 234, 0.2)" 
+                background: mode === "dark"
+                  ? "rgba(102, 126, 234, 0.2)"
                   : "rgba(255, 255, 255, 0.8)",
                 backdropFilter: "blur(20px)",
                 color: mode === "dark" ? "#667eea" : "#764ba2",
@@ -180,8 +180,8 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                 fontSize: "0.9rem",
                 height: 40,
                 border: "1px solid",
-                borderColor: mode === "dark" 
-                  ? "rgba(102, 126, 234, 0.3)" 
+                borderColor: mode === "dark"
+                  ? "rgba(102, 126, 234, 0.3)"
                   : "rgba(118, 75, 162, 0.3)",
                 "&:hover": {
                   transform: "scale(1.05)",
@@ -191,11 +191,11 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
               }}
             />
             {pinned.length > 0 && (
-              <Chip 
+              <Chip
                 label={`📌 ${pinned.length} Pinned`}
                 sx={{
-                  background: mode === "dark" 
-                    ? "rgba(255, 215, 0, 0.2)" 
+                  background: mode === "dark"
+                    ? "rgba(255, 215, 0, 0.2)"
                     : "rgba(255, 193, 7, 0.2)",
                   backdropFilter: "blur(20px)",
                   color: mode === "dark" ? "#FFD700" : "#FF8F00",
@@ -203,8 +203,8 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                   fontSize: "0.9rem",
                   height: 40,
                   border: "1px solid",
-                  borderColor: mode === "dark" 
-                    ? "rgba(255, 215, 0, 0.3)" 
+                  borderColor: mode === "dark"
+                    ? "rgba(255, 215, 0, 0.3)"
                     : "rgba(255, 193, 7, 0.3)",
                   "&:hover": {
                     transform: "scale(1.05)",
@@ -229,18 +229,18 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
               sx={{
                 "& .MuiOutlinedInput-root": {
                   borderRadius: 6,
-                  backgroundColor: mode === "dark" 
-                    ? "rgba(255, 255, 255, 0.03)" 
+                  backgroundColor: mode === "dark"
+                    ? "rgba(255, 255, 255, 0.03)"
                     : "rgba(255, 255, 255, 0.7)",
                   backdropFilter: "blur(30px)",
                   border: "2px solid",
-                  borderColor: mode === "dark" 
-                    ? "rgba(102, 126, 234, 0.2)" 
+                  borderColor: mode === "dark"
+                    ? "rgba(102, 126, 234, 0.2)"
                     : "rgba(118, 75, 162, 0.2)",
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                   "&:hover": {
-                    borderColor: mode === "dark" 
-                      ? "rgba(102, 126, 234, 0.4)" 
+                    borderColor: mode === "dark"
+                      ? "rgba(102, 126, 234, 0.4)"
                       : "rgba(118, 75, 162, 0.4)",
                     transform: "translateY(-2px)",
                     boxShadow: mode === "dark"
@@ -273,16 +273,16 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             {pinned.length > 0 && (
               <Box mb={8}>
-                <Box 
-                  display="flex" 
-                  alignItems="center" 
+                <Box
+                  display="flex"
+                  alignItems="center"
                   mb={4}
                   sx={{
                     "&::before": {
                       content: '""',
                       flex: 1,
                       height: "2px",
-                      background: mode === "dark" 
+                      background: mode === "dark"
                         ? "linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent)"
                         : "linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.5), transparent)",
                       marginRight: 2
@@ -291,18 +291,18 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                       content: '""',
                       flex: 1,
                       height: "2px",
-                      background: mode === "dark" 
+                      background: mode === "dark"
                         ? "linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent)"
                         : "linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.5), transparent)",
                       marginLeft: 2
                     }
                   }}
                 >
-                  <Typography 
-                    variant="h4" 
-                    fontWeight="800" 
+                  <Typography
+                    variant="h4"
+                    fontWeight="800"
                     sx={{
-                      background: mode === "dark" 
+                      background: mode === "dark"
                         ? "linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B)"
                         : "linear-gradient(45deg, #667eea, #764ba2, #f093fb)",
                       backgroundClip: "text",
@@ -313,7 +313,7 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                       gap: 2,
                       fontSize: "2rem",
                       letterSpacing: "-1px",
-                      textShadow: mode === "dark" 
+                      textShadow: mode === "dark"
                         ? "0 0 30px rgba(255, 215, 0, 0.3)"
                         : "0 0 30px rgba(102, 126, 234, 0.3)",
                     }}
@@ -324,7 +324,7 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                 <SortableContext items={pinned.map((note) => note.id)} strategy={rectSortingStrategy}>
                   <Grid container spacing={4}>
                     {pinned.map((note) => (
-                      <Grid item xs={12} sm={6} md={4} key={note.id}>
+                      <Grid item xs={12} key={note.id}> {/* Changed sm, md, lg to xs={12} */}
                         <Note
                           id={note.id}
                           title={note.title}
@@ -345,9 +345,9 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
             {others.length > 0 && (
               <Box>
                 {pinned.length > 0 && (
-                  <Box 
-                    display="flex" 
-                    alignItems="center" 
+                  <Box
+                    display="flex"
+                    alignItems="center"
                     mb={4}
                     mt={6}
                     sx={{
@@ -355,7 +355,7 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                         content: '""',
                         flex: 1,
                         height: "2px",
-                        background: mode === "dark" 
+                        background: mode === "dark"
                           ? "linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent)"
                           : "linear-gradient(90deg, transparent, rgba(118, 75, 162, 0.5), transparent)",
                         marginRight: 2
@@ -364,22 +364,22 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                         content: '""',
                         flex: 1,
                         height: "2px",
-                        background: mode === "dark" 
+                        background: mode === "dark"
                           ? "linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent)"
                           : "linear-gradient(90deg, transparent, rgba(118, 75, 162, 0.5), transparent)",
                         marginLeft: 2
                       }
                     }}
                   >
-                    <Typography 
-                      variant="h4" 
-                      fontWeight="800" 
+                    <Typography
+                      variant="h4"
+                      fontWeight="800"
                       sx={{
-                        background: mode === "dark" 
+                        background: mode === "dark"
                           ? "linear-gradient(45deg, #64B5F6, #42A5F5, #2196F3)"
                           : "linear-gradient(45deg, #667eea, #764ba2, #4facfe)",
                         backgroundClip: "text",
-                        WebkitBackgroundClip: "text", 
+                        WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         display: "flex",
                         alignItems: "center",
@@ -395,7 +395,7 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                 <SortableContext items={others.map((note) => note.id)} strategy={rectSortingStrategy}>
                   <Grid container spacing={4}>
                     {others.map((note) => (
-                      <Grid item xs={12} sm={6} md={4} key={note.id}>
+                      <Grid item xs={12} key={note.id}> {/* Changed sm, md, lg to xs={12} */}
                         <Note
                           id={note.id}
                           title={note.title}
@@ -414,8 +414,8 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
             )}
 
             {filteredNotes.length === 0 && (
-              <Box 
-                textAlign="center" 
+              <Box
+                textAlign="center"
                 py={12}
                 sx={{
                   background: mode === "dark"
@@ -429,8 +429,8 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                   backdropFilter: "blur(30px)",
                   borderRadius: 8,
                   border: "2px solid",
-                  borderColor: mode === "dark" 
-                    ? "rgba(102, 126, 234, 0.1)" 
+                  borderColor: mode === "dark"
+                    ? "rgba(102, 126, 234, 0.1)"
                     : "rgba(255, 255, 255, 0.3)",
                   position: "relative",
                   overflow: "hidden",
@@ -452,12 +452,12 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                   }
                 }}
               >
-                <Typography 
-                  variant="h3" 
+                <Typography
+                  variant="h3"
                   gutterBottom
-                  sx={{ 
+                  sx={{
                     fontWeight: "bold",
-                    background: mode === "dark" 
+                    background: mode === "dark"
                       ? "linear-gradient(45deg, #667eea, #764ba2)"
                       : "linear-gradient(45deg, #764ba2, #667eea)",
                     backgroundClip: "text",
@@ -468,9 +468,9 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                 >
                   {searchTerm ? '🔍 No matches found' : '✨ Your creative space awaits'}
                 </Typography>
-                <Typography 
-                  variant="h6" 
-                  sx={{ 
+                <Typography
+                  variant="h6"
+                  sx={{
                     color: mode === "dark" ? "rgba(255, 255, 255, 0.6)" : "rgba(0, 0, 0, 0.6)",
                     fontWeight: 500,
                     maxWidth: 400,
@@ -478,8 +478,8 @@ const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
                     lineHeight: 1.6
                   }}
                 >
-                  {searchTerm 
-                    ? 'Try different keywords or browse all notes' 
+                  {searchTerm
+                    ? 'Try different keywords or browse all notes'
                     : 'Start capturing your brilliant ideas and watch them come to life'}
                 </Typography>
               </Box>
